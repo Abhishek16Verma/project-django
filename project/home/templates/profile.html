@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile</title>
+    <a href="/">home</a>
+    |
+    <a href="">restaurant</a>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            margin-bottom: 10px;
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        #profileDisplay {
+            margin-top: 20px;
+        }
+        #profileImage {
+            max-width: 200px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>User Profile</h2>
+
+    <form id="profileForm">
+        <label for="name">Name:</label>
+        <input type="text" id="name" placeholder="Enter your name" required>
+
+        <label for="email">Email:</label>
+        <input type="email" id="email" placeholder="Enter your email" required>
+
+        <label for="phone">Phone:</label>
+        <input type="tel" id="phone" placeholder="Enter your phone number" required>
+
+        <label for="address">Address:</label>
+        <input type="text" id="address" placeholder="Enter your address" required>
+
+        <label for="profileImage">Profile Image:</label>
+        <input type="file" id="profileImage" accept="image/*">
+
+        <button type="button" onclick="displayProfile()">Display Profile</button>
+    </form>
+
+    <div id="profileDisplay"></div>
+
+    <script>
+        // Function to display the user profile information
+        function displayProfile() {
+            // Get values from the form
+            var name = document.getElementById('name').value;
+            var email = document.getElementById('email').value;
+            var phone = document.getElementById('phone').value;
+            var address = document.getElementById('address').value;
+
+            // Get the profile image file
+            var profileImage = document.getElementById('profileImage').files[0];
+
+            // Display the information
+            var displayDiv = document.getElementById('profileDisplay');
+            displayDiv.innerHTML = "<h3>User Profile:</h3>" +
+                                   "<p><strong>Name:</strong> " + name + "</p>" +
+                                   "<p><strong>Email:</strong> " + email + "</p>" +
+                                   "<p><strong>Phone:</strong> " + phone + "</p>" +
+                                   "<p><strong>Address:</strong> " + address + "</p>";
+
+            // Display the profile image if available
+            if (profileImage) {
+                var imageElement = document.createElement('img');
+                imageElement.src = URL.createObjectURL(profileImage);
+                imageElement.alt = 'Profile Image';
+                imageElement.id = 'profileImage';
+                imageElement.style.maxWidth = '200px';
+                displayDiv.appendChild(imageElement);
+            }
+        }
+    </script>
+
+</body>
+</html>
